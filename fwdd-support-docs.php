@@ -72,18 +72,3 @@ function wptp_add_categories_to_attachments() {
 	register_taxonomy_for_object_type( 'category', 'attachment' );
 }
 add_action( 'init' , 'wptp_add_categories_to_attachments' );
-
-
-/**
- * Helper function used for testing.
- * Shows "hook suffix" as admin notice.
- */
-function wps_print_admin_pagehook(){
-	global $hook_suffix;
-	if( !current_user_can( 'manage_options') )
-		return;
-	?>
-	<div class="error"><p><?php echo $hook_suffix; ?></p></div>
-	<?php
-}
-add_action( 'admin_notices', 'wps_print_admin_pagehook' );
