@@ -16,6 +16,7 @@ if ( ! function_exists( 'get_supporting_docs' ) ):
 		$supporting_documents = get_post_meta( $post->ID, 'supporting_documents', true );
 
 		if ( ! empty( $supporting_documents ) ) {
+
 			foreach ( $supporting_documents as $document ) {
 				$id        = esc_attr( $document['id'] );
 				$extension = esc_attr( $document['extension'] );
@@ -42,9 +43,10 @@ if ( ! function_exists( 'has_supporting_docs' ) ):
 	function has_supporting_docs() {
 		global $post;
 		$supporting_documents = get_post_meta( $post->ID, 'supporting_documents', true );
-		if ( empty($supporting_documents) ){
+		if ( empty( $supporting_documents ) ) {
 			return false;
 		}
+
 		return true;
 	}
 endif;
@@ -65,16 +67,23 @@ endif;
  */
 if ( ! function_exists( 'load_supporting_doc_styles' ) ):
 	function load_supporting_doc_styles() {
+	//Only load the CSS
+	global $fwdd_supporting_documents_css;
+		if ( ! $fwdd_supporting_documents_css ){
+			return;
+		}
 		wp_enqueue_style( 'support-docs', plugins_url( 'css/support-docs.css', dirname( __FILE__ ) ) );
 	}
 
-	add_action( 'wp_enqueue_scripts', 'load_supporting_doc_styles' );
+	add_action( 'init', 'load_supporting_doc_styles' );
 endif;
 
 /**
  * Add Supporting Docs shortcode support
  */
 if ( ! function_exists( 'supporting_docs_shortcode' ) ):
+	global $fwdd_supporting_documents_css;
+	$fwdd_supporting_documents_css = true;
 	function supporting_docs_shortcode() {
 		return get_supporting_docs();
 	}

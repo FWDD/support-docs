@@ -28,6 +28,7 @@ if ( !function_exists( 'add_action' ) ) {
 // Directory constant
 define("FWDDSD_DIR", dirname(__FILE__));
 
+
 /**
  * Include the plugin functions file
  */

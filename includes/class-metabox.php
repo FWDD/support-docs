@@ -7,7 +7,7 @@
 class Supporting_Docs_Meta_Box {
 
 	public function __construct() {
-		$this->supportingDocsRendered = false;
+
 		if ( is_admin() ) {
 			add_action( 'load-post.php', array( $this, 'init_metabox' ) );
 			add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
@@ -105,7 +105,6 @@ class Supporting_Docs_Meta_Box {
 		$screen = get_current_screen();
 		if ( 'page' != $screen->post_type && 'post' != $screen->post_type ) {
 			return;
-
 		}
 
 		// Add nonce for security and authentication.

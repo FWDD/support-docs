@@ -38,6 +38,7 @@ class Supporting_Docs_Widget extends WP_Widget {
 		if ( ! has_supporting_docs() ){
 			return;
 		}
+
 		$title     = ! empty( $instance['title'] ) ? $instance['title'] : '';
 
 		/** This filter is documented in wp-includes/default-widgets.php */
